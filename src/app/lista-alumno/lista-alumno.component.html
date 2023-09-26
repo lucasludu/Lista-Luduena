@@ -1,0 +1,28 @@
+<h1 appTitulo>{{title | uppercase}}</h1>
+
+<table class="table table-striped table-bordered border border-5" *ngIf="!enabled;">
+  <thead class="table-success">
+    <tr class="text-center">
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Materia</th>
+      <th>Aprobado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let al of listaAlumnos">
+      <td class="text-center">{{ al.id }}</td>
+      <td>{{ al.nombre | uppercase }}</td>
+      <td>{{ al.materia | uppercase }}</td>
+      <td class="text-center" [ngStyle]="getColor(al.aprobado)">{{ al.aprobado ? "SI" : "NO"}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<button class="btnMostrar" (click)="alternarEnabled()">
+  <p *ngIf="enabled; else noMostrar"> Mostrar Lista de Alumnos</p>
+  <ng-template #noMostrar>
+    <p>Ocultar Lista</p>
+  </ng-template>
+</button>
+
